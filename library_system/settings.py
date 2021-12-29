@@ -123,8 +123,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = "/static/" # For runserver at local
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static') # For deloy to heroku
+#STATIC_ROOT = "/static/" # For runserver at local
+STATIC_ROOT = os.path.join(BASE_DIR, 'static') # For deloy to heroku
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'library_app/media')
 MEDIA_URL = '/media/'
