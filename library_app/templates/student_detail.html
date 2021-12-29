@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Library - {{student.user.get_full_name}}{% endblock %}
+{% block body %}
+<div class = "container padding-half">
+    <h2 class = "text-center pb-2">Student details</h2>
+    <div class = "row">
+        <div class = "col-md-6 col-sm-12 col-xs-12 col-12 text-center">
+            <div class = "profile-img">
+                <img class = "file" src = "{{student.image.url}}" alt = "Picture of {{user.get_full_name}}">
+            </div>
+        </div>
+        <div class = "col-md-6 col-sm-12 col-xs-12 col-12">
+            <div class = "profile-info">
+                <div class = "info mt-2">
+                    <span class = "bold">ID:</span>
+                    <span>{{student.user.id}}</span>
+                </div>
+                <div class = "info mt-2">
+                    <span class = "bold">Username:</span>
+                    <span>{{student.user}}</span>
+                </div>
+                <div class = "info mt-2">
+                    <span class = "bold">Full name:</span>
+                    <span>{{student.fullname}}</span>
+                </div>
+                <div class = "info mt-2">
+                    <span class = "bold">Email: </span>
+                    <span>{{student.user.email}}</span>
+                </div>
+                <div class = "info mt-2">
+                    <span class = "bold">Phone number:</span>
+                    <span>{{student.phone}}</span>
+                </div>
+                <div class = "info mt-2">
+                    <span class = "bold">Roll number:</span>
+                    <span>{{student.roll_no}}</span>
+                </div>
+                <div class = "info mt-2">
+                    <span class = "bold">Classroom:</span>
+                    <span>{{student.classroom}}</span>
+                </div>
+                <div class = "info mt-2">
+                    <span class = "bold">Branch name:</span>
+                    <span>{{student.branch}}</span>
+                </div>
+
+                {% if not user.is_superuser %}
+                <div class = "row">
+                    <div class = "info-function">
+                        <a href = "/edit_profile/" style = "width: 5rem;" class = "btn btn-success mt-2">Edit</a>
+                        &nbsp;&nbsp;&nbsp;
+                        <a href = "/logout/" style = "width: 5rem;" class = "btn btn-danger mr-3 mt-2">Logout</a>
+                    </div>
+                </div>
+                {% else %}
+                <div class = "row">
+                    <div class = "info-function">
+                        <a href = "/delete_student/{{student.id}}/" style = "width: 5rem;" class = "btn btn-danger mt-2">Delete</a>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+    {% if on_borrow %}
+    alert("The student you want to delete still has unreturned books. Please check again.")
+    document.location = "/student_list"
+    {% endif %}
+</script>
+{% endblock %}

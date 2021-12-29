@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Library - Issue a book{% endblock %}
+{% block body %}
+<div class = "container padding-half">
+    <h3 class = "text-center">Issue a book (V.1)</h3>
+    <form method = "POST" class = "form" name = "issue_book">
+        {% csrf_token %}
+        
+        <div class = "row mt-2">
+            <div class = "col-md-6 col-12 form-group">
+                <label><i style = "font-weight: bold;">Borrower: </i></label>
+                <p>{{student.roll_no}} - {{student.fullname}} - {{student.classroom}} - {{student.branch}} - {{student.user}}</p>
+            </div>
+        </div>
+        <div class = "row mt-2">
+            <div class = "col-md-12 col-12 form-group">
+                <label><i style = "font-weight: bold;">Book ID</i></label>
+                <input type="text" class = "form-control mt-2" name = "title_isbn" placeholder = "Please choose any book bellow" required>
+            </div>
+        </div>
+        <button style = "width: 100%;" class = "btn btn-primary mt-4" type = "submit">Issue</button>
+    </form>
+    <div class = "note mt-2">
+        <label><i>Please type in the following format (book title+book isbn) or (book title) or (book isbn).</i></label>
+    </div>
+    <input type="text" id="search_box" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+    
+    <ul id="search_result">
+        {% for i in book %}
+        <li><a class = "book_result">{{i.title}}+{{i.isbn}}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+    {% if alert %}
+    alert("Book has been issued successfully.")
+    document.location = "/student_list"
+    {% endif %}
+    {% if nobook %}
+    alert("There is no book in database.")
+    {% endif %}
+    {% if wrong_data %}
+    alert("There are some problems. Please try again.")
+    {% endif %}
+    {% if empty %}
+    alert("Book isn't available to borrow. Out of book.")
+    {% endif %}
+
+    function myFunction() {
+      // Declare variables
+      var input, filter, ul, li, a, i, txtValue;
+      input = document.getElementById('search_box');
+      filter = input.value.toUpperCase();
+      ul = document.getElementById("search_result");
+      li = ul.getElementsByTagName('li');
+    
+      // Loop through all list items, and hide those who don't match the search query
+      for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          li[i].style.display = "";
+          //document.issue_book.book_title.value = li[i].innerText
+        } else {
+          li[i].style.display = "none";
+        }
+      }
+    }
+    
+    $('#search_result li').click((event) => {
+        //console.log(event.target);
+        let text = event.target
+        document.issue_book.title_isbn.value = text.innerText
+    });
+    
+    
+    </script>
+{% endblock %}

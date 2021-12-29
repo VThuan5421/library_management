@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{%block title %}Library - {{book.title}}{% endblock %}
+{% load static %}
+{% block css %}
+<link rel = "stylesheet" href = "/static/css/product.css">
+{% endblock %}
+{% block body %}
+<div class = "pd-wrap padding-half">
+<div class = "container">
+    <div class = "heading-section">
+        <h2>Book Details</h2>
+    </div>
+    <div class = "row">
+        <div class = "image-content col-lg-6 col-md-8 col-sm-12 col-xs-12 col-12 mt-2 text-center">
+            <div class = "item-image">
+                <img class = "image" src = "{{ book.image.url }}" alt = "{{book.title}}">
+            </div>
+        </div>
+        <div class = "col-lg-6 col-md-4 col-sm-12 col-xs-12 col-12 mt-2">
+            <div class = "product-detail">
+                <div class = "product-info">
+                    <div class = "product-name">{{ book.title }}</div>
+                    <div class = "book-info"><p><strong>Author: </strong>{{ book.author }}</p></div>
+                    <div class = "book-info"><p><strong>ISBN: </strong>{{ book.isbn }}</p></div>
+                    <div class = "book-info"><p><strong>Language: </strong>{{ book.language }}</p></div>
+                    <div class = "book-info">
+                        <p><strong>Main genre: </strong>
+                            {% for genre in book.genre.all %}{{ genre }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>    
+                            {{ book.genre.genre_name }}
+                        </p>
+                    </div>
+                    <div class = "book-info"><p><strong>Total copies: </strong>{{book.total_copies}}</p></div>
+                    <div class = "book-info"><p><strong>Available book: </strong>{{book.book_available}}</p></div>
+                    <div class = "book-function" style = "margin-top: 20px;">
+                        {% if user.is_superuser %}
+                        <a class = "btn btn-danger" href = "/delete_book/{{book.id}}/">Delete</a>
+                        <a class = "btn btn-success" href = "/edit_book/{{book.id}}/">Update</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class = "product-info-tabs">
+        <ul class = "nav nav-tabs" id = "myTab" role = "tablist">
+            <li class = "nav-item">
+                <a class = "nav-link active" id = "description-tab" data-toggle = "tab" href = "#description" role = "tab" aria-controls = "description" aria-selected = "true">Description</a>
+            </li>
+            <li class = "nav-item">
+                <a class = "nav-link" id = "review-tab" data-toggle="tab" href = "#review" role = "tab" aria-controls = "review" aria-selected="false">Reviews (0)</a>
+            </li>
+        </ul>
+        <div class = "tab-content" id = "myTabContent">
+            <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+                {{ book.description }}
+            </div>
+            <!--
+            <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+                <div class="review-heading">REVIEWS</div>
+                <p class="mb-20">There are no reviews yet.</p>
+                <form class="review-form">
+                    <div class="form-group">
+                        <label>Your rating</label>
+                        <div class="reviews-counter">
+                            <div class="rate">
+                              <input type="radio" id="star5" name="rate" value="5" />
+                              <label for="star5" title="text">5 stars</label>
+                              <input type="radio" id="star4" name="rate" value="4" />
+                              <label for="star4" title="text">4 stars</label>
+                              <input type="radio" id="star3" name="rate" value="3" />
+                              <label for="star3" title="text">3 stars</label>
+                              <input type="radio" id="star2" name="rate" value="2" />
+                              <label for="star2" title="text">2 stars</label>
+                              <input type="radio" id="star1" name="rate" value="1" />
+                              <label for="star1" title="text">1 star</label>
+                            </div>
+                          </div>
+                    </div>
+                    <div class = "form-group">
+                        <label>Your message</label>
+                        <textarea class = "form-control" name = "review" rows = "10"></textarea>
+                    </div>
+                    <div class = "row">
+                        <div class = "col-md-6">
+                            <div class = "form-group">
+                                <input type = "text" name = "name" class = "form-control" placeholder = "Name*">
+                            </div>
+                        </div>
+                        <div class = "col-md-6">
+                            <div class = "form-group">
+                                <input type = "text" name = "email" class = "form-control" placeholder = "Email ID*">
+                            </div>
+                        </div>
+                    </div>
+                    <button class = "btn btn-primary">Submit Review</button>
+                </form>
+            </div>
+            -->
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Library - Sign in for Student{% endblock %}
+{% block css %}
+<link rel="stylesheet" href = "/static/css/login.css">
+{% endblock %}
+{% block body %}
+<div class = "container padding-half">
+    <div class = "login-main">
+    <form method = "POST" class = "login-form">
+        <h2 class = "text-center">Sign in</h2>
+        {% csrf_token %}
+        <div class = "row mt-4">
+            <div class = "col-md-12 col-12">
+                <label><i style = "font-weight: bold;">Username</i></label>
+                <input type = "text" class = "form-control mt-2" name = "username" placeholder = "Enter username" required>
+            </div>
+
+        </div>
+        <div class = "row mt-4">
+            <div class = "col-md-12 col-12">
+                <label><i style = "font-weight: bold;">Password</i></label>
+                <input type = "password" class = "form-control mt-2" name = "password" placeholder = "Enter password" required>
+            </div>
+            
+        </div>
+        <button type = "submit" class = "btn btn-success mt-4">Login</button>
+        <div class = "sign-up mt-2">
+            <p>No account? Click <a href = "/student_registration/">here</a> to sign up.</p>
+        </div>
+    </form>
+</div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+    {% if alert %}
+    alert("Invalid username or password")
+    document.location = "/student_login"
+    {% endif %}
+</script>
+{% endblock %}

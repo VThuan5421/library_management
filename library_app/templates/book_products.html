@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Book products{% endblock %}
+{% block css %}
+<link rel = "stylesheet" href = "/static/css/products.css">
+{% endblock %}
+{% block body %}
+<div class = "main-hero padding-half">
+    <div class = "container ">
+        <form method = "get" id = "formsearch" action="{% url 'search_b' %}">
+            <div class = "form-group search-book">
+                <input type = "text" id = "search" class = "form-control search" name = "q" placeholder = "Search...">
+                <button type = "button" class = "btn form-control-lg" onclick = "formsearch.submit()">Search</button>
+            </div>
+        </form>
+    </div>
+    <main id = "main">
+        {% for book in books %}
+        <div class = "book">
+            <img class = "book-img" src = "{{book.image.url}}" alt = "{{book.title}}">
+            <div class = "book-info">
+                <h6><a href = "{{book.get_absolute_url}}">{{book.title}}</a></h6>
+            </div>
+        </div>
+        {% endfor %}
+    </main>
+</div>
+{% endblock %}

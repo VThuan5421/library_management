@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Library - Add book{% endblock %}
+{% block body %}
+<div class = "container padding-half">
+    <h3 class = "text-center" entype>Add a Book</h3>
+    <form method = "POST" enctype = "multipart/form-data">
+        {% csrf_token %}
+        <div class = "row mt-4">
+            <div class = "col-md-6 col-12">
+                <div class = "row mt-2">
+                    <div class = "form-group col-md-12">
+                        <label><i style = "font-weight: bold;">Title</i></label>
+                        <input type = "text" class = "form-control mt-2" name = "title" placeholder = "Enter title of book" required>
+                    </div>
+                    <div class = "form-group col-md-12">
+                        <label><i style = "font-weight: bold;">ISBN Number</i></label>
+                        <input type = "text" class = "form-control mt-2" name = "isbn" placeholder = "Enter ISBN of book" required>
+                    </div>
+                    <div class = "form-group col-md-12">
+                        <label><i style = "font-weight: bold;">Author</i></label>
+                        <input type = "text" class = "form-control mt-2" name = "author" placeholder = "Enter author's name of book" required>
+                    </div>
+                    {% for i in form %}
+                    <div class = "form-group col-md-12">
+                        <label class = "control-label"><i style = "font-weight: bold;">{{ i.label_tag }}</i></label>
+                        <p><i>If you want to add another {{i.label_tag}} Please go to the admin page.</i></p>
+                        <div class = "mt-2">{{ i }}</div>
+                    </div>
+                    {% endfor %}
+                    
+                </div>
+            </div>
+            <div class = "col-md-6 col-12">
+                <div class = "row mt-2">
+                    
+                    <div class = "form-group col-md-12">
+                        <label><i style = "font-weight: bold;">Total copy</i></label>
+                        <input type = "number" class = "form-control mt-2" name = "total_copy" placeholder = "Enter the quantity of book" required>
+                    </div>
+                    <div class = "form-group col-md-12">
+                        <label><i style = "font-weight: bold;">Book Image</i></label>
+                        <input type = "file" class = "form-control mt-2" name = "image" required>
+                    </div>
+                    <div class = "form-group col-md-12">
+                        <label><i style = "font-weight: bold;">Description</i></label>
+                        <textarea style = "height: 180px; resize: none;" type = "text" class = "form-control mt-2" name = "description" placeholder = "Enter description of book" required></textarea>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <button type = "submit" class = "btn btn-outline-primary mt-4">Add</button>
+    </form>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+    {% if existing %}
+    alert('There is a book with an ISBN number you entered exists in the database.')
+    {% endif %}
+
+    {% if alert %}
+    alert("Book added successfully.")
+    document.location = "/book_list"
+    {% endif %}
+</script>
+{% endblock %}

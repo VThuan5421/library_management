@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Library - My issued books{% endblock %}
+{% block body %}
+<div class = "container padding-half">
+    <h3 class = "text-center">My issued book</h3>
+    <table class = "table table-hover font-15" id = "example">
+        <thead>
+            <tr class = "text-center">
+                <th>Sr.No</th>
+                <th>User ID</th>
+                <th>Student name</th>
+                <th>Book title</th>
+                <th>Author</th>
+                <th>Issued date</th>
+                <th>Expiry date</th>
+                <th>Fine</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in li1 %}
+            <tr class = "text-center center">
+                <td>{{forloop.counter}}</td>
+                <td>{{i.0}}</td>
+                <td>{{i.1}}</td>
+                <td>{{i.2}}</td>
+                <td>{{i.3}}</td>
+                <td>{{i.4}}</td>
+                <td>{{i.5}}</td>
+                <td>{{i.6}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

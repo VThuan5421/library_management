@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Issue a book{% endblock %}
+{% block body %}
+<div class = "container padding-half">
+    <h3 class = "text-center">Issue book for Student</h3>
+    <div class = "login-main">
+        <form method = "POST" class = "login-form">
+            {% csrf_token %}
+            {% for i in form %}
+            <div class = "form-group">
+                <label class = "control-label">{{i.label_tag}}</label>
+                <div class = "col-md-12 col-12 mt-2">
+                    {{ i }}
+                </div>
+            </div>
+            {% endfor %}
+            <button type = "submit" class = "btn btn-outline-primary mt-4">Issue book</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+    {% if alert %}
+    alert("Book successfully issued.")
+    document.location = "/issue_book"
+    {% endif %}
+</script>
+{% endblock %}

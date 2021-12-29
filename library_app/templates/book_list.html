@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Library - Book List{% endblock %}
+{% block body %}
+<div class = "container padding-half">
+    <h3 class = "text-center">All Books</h3>
+    <h5 class = "link-products text-center"><a href = "/book_products">Book Products</a></h5>
+    <table class = "table table-hover font-15" id = "example">
+        <thead>
+            <tr>
+                <th>Sr.No</th>
+                <th>Book Title</th>
+                <th>ISBN</th>
+                <th>Author</th>
+                {% if user.is_superuser %}
+                <th>Delete</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td><a href = "{{ book.get_absolute_url }}">{{ book.title }}</a></td>
+                
+                <td>{{ book.isbn }}</td>
+                <td>{{ book.author }}</td>
+                {% if user.is_superuser %}
+                <td><a href = "/delete_book/{{book.id}}/" class = "btn btn-danger" onclick = "return confirm('Are you sure you want to delete this books?')">Delete</a></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

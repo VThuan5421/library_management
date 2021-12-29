@@ -1,0 +1,154 @@
+/* FOR PRODUCT DETAIL */
+.pd-wrap {
+    font-family: 'Poppins', sans-serif;
+}
+.heading-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.heading-section h2 {
+    font-size: 32px;
+    font-weight: 500;
+    padding-top: 10px;
+    padding-bottom: 15px;
+	font-family: 'Poppins', sans-serif;
+}
+.image-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.item-image {
+    width: 450px;
+    height: 550px;
+}
+.item-image img {
+    width: 100%;
+    height: 100%;
+}
+.product-name {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 22px;
+    margin-bottom: 4px;
+}
+.product-info {
+    width: 100%;
+}
+.reviews-counter {
+    font-size: 13px;
+}
+.rate {
+    float: left;
+    padding: 0 10px 0 0;
+}
+.rate:not(:checked) > label {
+    float: right;
+    width: 15px;
+    overflow: hidden; 
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 21px;
+    color: #ccc;
+    margin-bottom: 0;
+    line-height: 21px;
+}
+.rate:not(:checked) > label:before {
+    content: '\2605';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #c59b80;
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+.product-detail p {
+    font-size: 14px;
+    line-height: 24px;
+    color: #7a7a7a;
+}
+.product-detail .form-control {
+    font-size: 15px;
+}
+.product-detail label {
+	line-height: 16px;
+	font-size: 15px;
+}
+.product-info-tabs {
+    margin-top: 25px;
+}
+.product-info-tabs .nav-tabs {
+	border-bottom: 2px solid #d8d8d8;
+}
+.product-info-tabs .nav-tabs .nav-item {
+	margin-bottom: 0;
+}
+.product-info-tabs .nav-tabs .nav-link {
+	border: none; 
+	border-bottom: 2px solid transparent;
+	color: #323232;
+}
+.product-info-tabs .nav-tabs .nav-item .nav-link:hover {
+	border: none; 
+}
+.product-info-tabs .nav-tabs .nav-item.show .nav-link, 
+.product-info-tabs .nav-tabs .nav-link.active, 
+.product-info-tabs .nav-tabs .nav-link.active:hover {
+	border: none; 
+	border-bottom: 2px solid #d8d8d8;
+	font-weight: bold;
+}
+.product-info-tabs .tab-content .tab-pane {
+    padding: 30px 20px;
+    font-size: 15px;
+    line-height: 24px;
+    color: #7a7a7a;
+}
+.review-form .form-group{
+    clear: both;
+}
+.mb-20 {
+    margin-bottom: 20px;
+}
+.review-form .rate {
+	float: none;
+	display: inline-block;
+}
+.review-heading {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 24px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    color: #000;
+}
+.review-form .form-control {
+    font-size: 14px;
+}
+.review-form input.form-control {
+    height: 40px;
+}
+.review-form textarea.form-control {
+	resize: none;
+}
+
+@media only screen and (max-width: 500px) {
+    .item-image {
+        width: 350px;
+        height: 450px;
+    }
+}
+@media only screen and (max-width: 350px) {
+    .item-image {
+        width: 300px;
+        height: 400px;
+    }
+}

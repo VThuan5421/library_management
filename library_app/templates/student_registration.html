@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Library - Sign up for students{% endblock %}
+{% block body %}
+<div class = "container padding-half">
+    <h2 class = "text-center">Sign Up</h2>
+    <form method = "POST" name = "regis" enctype = "multipart/form-data">
+        {% csrf_token %}
+        <div class = "row mt-2">
+            <div class = "col-md-6 col-12">
+                <div class = "row mt-2">
+                    <div class = "form-group col-md-12">
+                        <label><i style = "font-weight: bold;">Username</i></label>
+                        <input type = "text" class = "form-control mt-2" name = "username" placeholder = "Enter username" required>
+                    </div>
+                    <div class = "form-group col-md-12">
+                        <label><i style = "font-weight: bold;">Full name</i></label>
+                        <input type = "text" class = "form-control mt-2" name = "fullname" placeholder="Enter fullname" required>
+                    </div>
+                    <div class = "form-group cold-md-12">
+                        <label><i style = "font-weight: bold;">Roll number</i></label>
+                        <input type = "text" class = "roll_no form-control mt-2" name = "roll_no" placeholder = "Enter roll number" required>
+                    </div>
+                    <div class = "form-group col-md-12">
+                        <label><i style = "font-weight: bold;">Classroom</i></label>
+                        <input type = "text" class = "form-control mt-2" name = "classroom" placeholder = "Enter classroom" required>
+                    </div>
+                    <div class = "form-group col-md-12">
+                        <label><i style = "font-weight: bold;">Password</i></label>
+                        <input type = "password" class = "form-control mt-2" name = "password" placeholder = "Enter password" required>
+                    </div>
+                </div>
+            </div>
+            <div class = "col-md-6 col-12">
+                <div class = "row mt-2">
+                    <div class = "form-group col-md-12">
+                        <label><i style = "font-weight: bold;">Email</i></label>
+                        <input type = "email" class = "form-control mt-2" name = "email" placeholder = "Enter email" required>
+                    </div>
+                    <div class = "form-group cold-md-12">
+                        <label><i style = "font-weight: bold;">Phone number</i></label>
+                        <input type = "text" class = "form-control mt-2" name = "phone" placeholder = "Enter phone nummber" required>
+                    </div>
+                    <div class = "form-group col-md-12">
+                        <label><i style = "font-weight: bold;">Branch</i></label>
+                        <input type = "text" class = "form-control mt-2" name = "branch" placeholder = "Enter branch" required>
+                    </div>
+                    <div class = "form-group col-md-12">
+                        <label><i style = "font-weight: bold;">Student image</i><i> (Only admin can change your photo in thre future.)</i></label>
+                        <input type = "file" class = "form-control mt-2" name = "image" required>
+                    </div>
+                    <div class = "form-group col-md-12">
+                        <label><i style = "font-weight: bold;">Confirm password</i></label>
+                        <input type = "password" class = "form-control mt-2" name = "password2" placeholder = "Confirm password" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type = "submit" class = "btn btn-outline-primary mt-4">Register as student</button>
+    </form>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+    var roll_no = document.getElementsByClassName('roll_no')[0].value;
+    {% if existing %}
+    alert("There is a student with the ROLL NUMBER you entered exists in the database.")
+    {% endif %}
+
+    {% if passnotmatch %}
+    alert("Password doesn't match. Please enter again.")
+    //document.location = "/student_registration"
+    {% endif %}
+
+    {% if alert %}
+    alert("Registration was successful")
+    document.location = "/student_login"
+    {% endif %}
+</script>
+{% endblock %}

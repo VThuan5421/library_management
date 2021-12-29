@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Library - Main profile{% endblock %}
+{% block body %}
+<div class = "container padding-half">
+    <h2 class = "text-center pb-2">Student details</h2>
+    <div class = "row">
+        <div class = "col-md-6 col-sm-12 col-xs-12 col-12 text-center">
+            <div class = "profile-img">
+                <img class = "file" src = "{{user.student.image.url}}" alt = "Picture of {{user.get_full_name}}">
+            </div>
+        </div>
+        <div class = "col-md-6 col-sm-12 col-xs-12 col-12">
+            <div class = "profile-info">
+                <div class = "info mt-2">
+                    <span class = "bold">ID:</span>
+                    <span>{{user.id}}</span>
+                </div>
+                <div class = "info mt-2">
+                    <span class = "bold">Username:</span>
+                    <span>{{user}}</span>
+                </div>
+                <div class = "info mt-2">
+                    <span class = "bold">Full name:</span>
+                    <span>{{user.student.fullname}}</span>
+                </div>
+                <div class = "info mt-2">
+                    <span class = "bold">Email: </span>
+                    <span>{{user.email}}</span>
+                </div>
+                <div class = "info mt-2">
+                    <span class = "bold">Phone number:</span>
+                    <span>{{user.student.phone}}</span>
+                </div>
+                <div class = "info mt-2">
+                    <span class = "bold">Roll number:</span>
+                    <span>{{user.student.roll_no}}</span>
+                </div>
+                <div class = "info mt-2">
+                    <span class = "bold">Classroom:</span>
+                    <span>{{user.student.classroom}}</span>
+                </div>
+                <div class = "info mt-2">
+                    <span class = "bold">Branch name:</span>
+                    <span>{{user.student.branch}}</span>
+                </div>
+
+                {% if not user.is_superuser %}
+                <div class = "row">
+                    <div class = "info-function">
+                    <a href = "/edit_profile/" style = "width: 5rem;" class = "btn btn-success mt-2">Edit</a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a href = "/logout/" style = "width: 5rem;" class = "btn btn-danger mr-3 mt-2">Logout</a>
+                </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

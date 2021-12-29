@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Library - Update book{% endblock %}
+{% block body %}
+<div class = "container padding-half">
+    <h2 class = "text-center" entype>Update a Book</h2>
+    <form method = "POST" enctype = "multipart/form-data">
+        {% csrf_token %}
+        <div class = "row mt-4">
+            <div class = "col-md-6 col-12">
+                <div class = "row mt-2">
+                    <div class = "form-group col-md-12">
+                        <label><i style = "font-weight: bold;">Title</i></label>
+                        <input type = "text" class = "form-control mt-2" name = "title" value = "{{book.title}}">
+                    </div>
+                    <div class = "form-group col-md-12">
+                        <label><i style = "font-weight: bold;">Author</i></label>
+                        <input type = "text" class = "form-control mt-2" name = "author" value = "{{book.author}}">
+                    </div>
+                    <div class = "form-group col-md-12">
+                        <label><i style = "font-weight: bold;">ISBN Number</i></label>
+                        <input type = "text" class = "form-control mt-2" name = "isbn" value = "{{book.isbn}}">
+                    </div>
+                    {% for i in form %}
+                    <div class = "form-group col-md-12">
+                        <label class = "control-label"><i style = "font-weight: bold;">{{ i.label_tag }}</i></label>
+                        <div class = "mt-2">{{ i }}</div>
+                    </div>
+                    {% endfor %}
+                    
+                </div>
+            </div>
+            <div class = "col-md-6 col-12">
+                <div class = "row mt-2">
+                    
+                    <div class = "form-group col-md-12">
+                        <label><i style = "font-weight: bold;">Total copy</i></label>
+                        <input type = "number" class = "form-control mt-2" name = "total_copy" value = "{{book.total_copies}}">
+                    </div>
+                    <div class = "form-group col-md-12">
+                        <label><i style = "font-weight: bold;">Description</i></label>
+                        <textarea style = "height: 180px; resize: none;" type = "text" class = "form-control mt-2" name = "description">{{book.description}}</textarea>
+                    </div>
+                    <div class = "form-group col-md-12">
+                        <label><i style = "font-weight: bold;">Book Image <strong>(Please go to admin page to change image.)</strong></strong></i></label>
+                        <input type = "file" class = "form-control mt-2" name = "image" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type = "submit" class = "btn btn-outline-primary mt-4">Update</button>
+    </form>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+    {% if alert %}
+    alert("Updated book successfully.")
+    document.location = "/book/{{book.id}}"
+    {% endif %}
+
+    {% if wrong %}
+    alert("Total book field you entered is less than the borrowed books.")
+    document.location = "/edit_book/{{book.id}}"
+    {% endif %}
+</script>
+{% endblock %}

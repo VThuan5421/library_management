@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Login as an Admin{% endblock %}
+{% block css %}
+<link rel="stylesheet" href = "/static/css/login.css">
+{% endblock %}
+{% block body %}
+<div class = "container padding-half">
+    <h2 class = "text-center">Sign in</h2>
+    <p class = "text-center"><b>Note: </b>Only the admin login from here. No Student will be allowed to login.</p>
+    <div class = "login-main">
+    <form method = "POST" class = "login-form">
+        {% csrf_token %}
+        <div class = "row mt-4">
+            <div class = "form-group col-md-12">
+                <label><i style = "font-weight: bold;">Username</i></label>
+                <input type = "text" class = "form-control mt-2" name = "username" placeholder = "Enter username" required>
+            </div>
+        </div>
+        <div class = "row mt-4">
+            <div class = "form-group col-md-12">
+                <label><i style = "font-weight: bold;">Password</i></label>
+                <input type = "password" class = "form-control mt-2" name = "password" placeholder = "Enter password" required>
+            </div>
+        </div>
+        <button type = "submit" class = "btn btn-success mt-4">Login</button>
+    </form>
+</div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+    {% if alert %}
+    alert("Invalid username or password")
+    document.location = "/admin_login"
+    {% endif %}
+</script>
+{% endblock %}

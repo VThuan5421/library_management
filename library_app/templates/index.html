@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Library Management System{% endblock %}
+{% block body %}
+<div class = "hero">
+    <div class = "hero-img">
+        <img src = "/static/images/main_screen.jpg" alt = "">
+        <div class = "text pt-1 pb-1">
+            <h4>You can register as student. You will be able to issue any book through the admin. After that you need to return the book within 14 days or else a fine $5 will be charged per day till the book is returned.</h4>
+            <a class = "btn btn-hero" href = "/book_products">View all Books</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
