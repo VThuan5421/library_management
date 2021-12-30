@@ -2,7 +2,7 @@
 An online library management system with Django
 # Preview: https://library5479.herokuapp.com
 - The free heroku plan doesn't show media files. You will not see the image.
-
+- Login for addmin: admin1-matkhau1
 ### Setup your enviroment
 1. Open cmd or window powershell
 2. go to project folder. Ex: cd ./path/to/library_management-main
