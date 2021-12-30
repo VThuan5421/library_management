@@ -124,14 +124,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 #STATIC_ROOT = "/static/" # For runserver at local
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static') # For deloy to heroku
+STATIC_ROOT = os.path.join(BASE_DIR, 'static') # For deloy to heroku
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'library_app/media')
 MEDIA_URL = '/media/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 

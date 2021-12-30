@@ -92,6 +92,39 @@ def add_book(request):
         return render(request, "add_book.html", {'alert': alert, 'form': form})
 
     return render(request, 'add_book.html', {'form': form})
+
+@login_required
+def add_language(request):
+    if not request.user.is_superuser:
+        return redirect("/")
+    if request.method == "POST":
+        language = request.POST['language']
+        check_language = Language.objects.filter(language_name = language)
+        if check_language.exists():
+            existing = True
+            return render(request, "add_language.html", {"existing": existing})
+
+        mod = Language.objects.create(language_name = language)
+        mod.save()
+        return redirect("/add_language")
+    return render(request, "add_language.html")
+
+@login_required
+def add_genre(request):
+    if not request.user.is_superuser:
+        return redirect("/")
+    if request.method == "POST":
+        genre = request.POST['genre']
+        check_genre = Genre.objects.filter(genre_name = genre)
+        if check_genre.exists():
+            existing = True
+            return render(request, "add_genre.html", {"existing": existing})
+
+        mod = Genre.objects.create(genre_name = genre)
+        mod.save()
+        return redirect("/add_genre")
+    return render(request, "add_genre.html")
+
 @login_required
 def issue_book(request):
     """This is the one version of issue book"""

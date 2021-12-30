@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Add Language{% endblock %}
+{% block css %}
+<link rel="stylesheet" href = "/static/css/login.css">
+{% endblock %}
+{% block body %}
+<div class = "container padding-half">
+    <div class = "login-main">
+    <form method = "POST" class = "login-form">
+        <h3 class = "text-center">Add genre</h3>
+        {% csrf_token %}
+        <div class = "row mt-4">
+            <div class = "col-md-12 col-12">
+                <label><i style = "font-weight: bold;">Genre</i></label>
+                <input type = "text" class = "form-control mt-2" name = "genre" placeholder = "Enter genre" required>
+            </div>
+        </div>
+        <button type = "submit" class = "btn btn-success mt-4">Add</button>
+    </form>
+</div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+    {% if existing %}
+    alert("Genre already exists.")
+    {% endif %}
+</script>
+{% endblock %}

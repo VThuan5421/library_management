@@ -24,7 +24,13 @@
                     {% for i in form %}
                     <div class = "form-group col-md-12">
                         <label class = "control-label"><i style = "font-weight: bold;">{{ i.label_tag }}</i></label>
-                        <p><i>If you want to add another {{i.label_tag}} Please go to the admin page.</i></p>
+                        <p>
+                            <i>Add {{i.label_tag}} Click 
+                                {% if 'genre' in i.label_tag %}<a href = "/add_genre">here</a>.
+                                {% elif 'language' in i.label_tag %}<a href = "/add_language">here</a>.
+                                {% endif %}
+                            </i>
+                        </p>
                         <div class = "mt-2">{{ i }}</div>
                     </div>
                     {% endfor %}
